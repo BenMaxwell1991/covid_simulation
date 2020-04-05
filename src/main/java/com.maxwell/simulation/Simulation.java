@@ -1,8 +1,6 @@
 package com.maxwell.simulation;
 
-import com.maxwell.data.Constants;
-import com.maxwell.data.GroupParameters;
-import com.maxwell.data.Results;
+import com.maxwell.data.*;
 import com.maxwell.maths.Infected;
 import com.maxwell.maths.Recovered;
 import com.maxwell.maths.Susceptible;
@@ -28,7 +26,8 @@ public class Simulation {
         this.maxt = endTime;
     }
 
-    public void run(Susceptible S, Infected I, Recovered R, GroupParameters gp) {
+//    public void run(Susceptible S, Infected I, Recovered R, GroupParameters gp) {
+    public void run(SIR sir, Population pop) {
         try {
             File myFile = new File(Constants.outputPath);
             if (myFile.exists()) {
@@ -37,21 +36,21 @@ public class Simulation {
             myFile.createNewFile();
 
             PrintHelper.printHeader();
-            PrintHelper.printData(S, I, R, myFile);
-            results.addData(S.get(), I.get(), R.get(), t);
+            PrintHelper.printData(sir, myFile);
+            results.addData(sir.s.get(), sir.i.get(), sir.r.get(), t);
 
             Iterator theIterator = new SimpleEuler();
 
             int loopCount = 0;
             for (double i = t; i < maxt; i = i + dt) {
 
-                theIterator.stepForward(S, I, R, gp, dt);
+                theIterator.stepForward(sir, pop, dt);
                 t = t + dt;
                 loopCount++;
 
                 if (loopCount % printRes == 0) {
-                    PrintHelper.printData(S, I, R, myFile);
-                    results.addData(S.get(), I.get(), R.get(), t);
+                    PrintHelper.printData(sir, myFile);
+                    results.addData(sir.s.get(), sir.i.get(), sir.r.get(), t);
                 }
             }
         } catch (Exception e) {

@@ -1,5 +1,6 @@
 package com.maxwell.utility;
 
+import com.maxwell.data.SIR;
 import com.maxwell.maths.ContinuousValue;
 
 import java.io.File;
@@ -27,16 +28,16 @@ public class PrintHelper {
 
 
     // Print current set of x, y, z data
-    public static void printData(ContinuousValue x, ContinuousValue y, ContinuousValue z, File aFile){
+    public static void printData(SIR sir, File aFile){
         DecimalFormat formatter = new DecimalFormat("0.00");
-        String xStr = formatter.format(x.get());
-        String yStr = formatter.format(y.get());
-        String zStr = formatter.format(z.get());
+        String sStr = formatter.format(sir.s.get());
+        String iStr = formatter.format(sir.i.get());
+        String rStr = formatter.format(sir.r.get());
 
-        System.out.print(xStr + "  " + yStr + "  " + zStr + "\n");
+        System.out.print(sStr + "  " + iStr + "  " + rStr + "\n");
         try {
             FileWriter myWriter = new FileWriter(aFile, true);
-            myWriter.write(xStr + "  " + yStr + "  " + zStr + "\n");
+            myWriter.write(sStr + "  " + iStr + "  " + rStr + "\n");
             myWriter.close();
         } catch (Exception e) {
 
