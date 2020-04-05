@@ -5,7 +5,7 @@ A simulation of the spread of an infectious desease through a population based o
 ## Getting Started
 
 Running this program takes the InputParameters.json file and iteratively solves the SIR model using 
-a Runge Kutta technique (Currently SimpleEuler but will add more advanced solvers)
+a [Runge Kutta](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods) technique (Currently the [Simple Euler](https://en.wikipedia.org/wiki/Euler_method) but will add more advanced solvers)
 
 ## Built With
 
