@@ -29,31 +29,20 @@ public class Simulation {
 //    public void run(Susceptible S, Infected I, Recovered R, GroupParameters gp) {
     public void run(SIR sir, Population pop) {
         try {
-//            File myFile = new File(Constants.outputPath);
-//            if (myFile.exists()) {
-//                myFile.delete();
-//            }
-//            myFile.createNewFile();
-
             PrintHelper.printHeader();
-//            PrintHelper.printData(sir, myFile);
             results.addData((SIR)sir.clone(), t);
-
             Iterator theIterator = new SimpleEuler();
 
             int loopCount = 0;
             for (double i = t; i < maxt; i = i + dt) {
-
                 theIterator.stepForward(sir, pop, dt);
                 t = t + dt;
                 loopCount++;
 
                 if (loopCount % printRes == 0) {
-//                    PrintHelper.printData(sir, myFile);
                     results.addData((SIR)sir.clone(), t);
                 }
             }
-
             results.write(Constants.outputPath);
         } catch (Exception e) {
             e.printStackTrace();

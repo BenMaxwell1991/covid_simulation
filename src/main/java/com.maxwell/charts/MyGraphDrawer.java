@@ -26,24 +26,19 @@ public class MyGraphDrawer {
 
     XYSeriesCollection dataset = new XYSeriesCollection();
 
+    // Get result data vs time and initialise the UI
     public MyGraphDrawer(Results chartData) {
-
         S = chartData.getS();
         I = chartData.getI();
         R = chartData.getR();
-
         initUI();
     }
 
+    // Initialise the User Inteface
     private void initUI() {
-
-//        XYDataset dataset_S = createDataSet(S, "Susceptible");
-//        XYDataset dataset_I = createDataSet(I, "Infected");
-//        XYDataset dataset_R = createDataSet(R, "Recovered");
         dataset.addSeries(createDataSet(S, "Susceptible"));
         dataset.addSeries(createDataSet(I, "Infected"));
         dataset.addSeries(createDataSet(R, "Recovered"));
-//        XYDataset[] dataArray = {dataset_S, dataset_I, dataset_R};
 
         JFreeChart chart = createChart(null);
         JFrame frame = new JFrame();
@@ -61,6 +56,7 @@ public class MyGraphDrawer {
         frame.setVisible(true);
     }
 
+    // take an array of data and convert it into a dataset
     public XYSeries createDataSet(Double[] xyData, String key) {
 
         XYSeries series = new XYSeries(key);
@@ -74,11 +70,7 @@ public class MyGraphDrawer {
         return series;
     }
 
-    public void drawDataSet(XYDataset someData) {
-
-    }
-
-
+    // Create and draw the chart
     private JFreeChart createChart(XYDataset[] filler) {
 
         JFreeChart chart = ChartFactory.createXYLineChart(
@@ -98,10 +90,6 @@ public class MyGraphDrawer {
         plot.getRenderer().setSeriesStroke(1, new BasicStroke(2.0f));
         plot.getRenderer().setSeriesStroke(2, new BasicStroke(2.0f));
 
-//        renderData(plot, dataset[0], Color.red);
-//        renderData(plot, dataset[1], Color.green);
-//        renderData(plot, dataset[2], Color.blue);
-
         plot.setBackgroundPaint(Color.white);
 
         plot.setRangeGridlinesVisible(true);
@@ -118,14 +106,5 @@ public class MyGraphDrawer {
         );
 
         return chart;
-    }
-
-    private void renderData(XYPlot p, XYDataset xy, Color c) {
-        var renderer = new XYLineAndShapeRenderer();
-        renderer.setSeriesPaint(0, c);
-        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
-
-        p.setDataset(xy);
-        p.setRenderer(renderer);
     }
 }
