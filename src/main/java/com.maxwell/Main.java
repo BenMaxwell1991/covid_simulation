@@ -1,5 +1,6 @@
 package com.maxwell;
 
+import com.maxwell.charts.MyGraphDrawer;
 import com.maxwell.data.Population;
 import com.maxwell.data.TestData;
 import com.maxwell.maths.Infected;
@@ -18,5 +19,7 @@ public class Main {
 
         Simulation simulation = new Simulation();
         simulation.run(S, I, R, population.groups.get(0).parameters);
+
+        MyGraphDrawer mgd = new MyGraphDrawer(simulation.getResults());
     }
 }
