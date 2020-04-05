@@ -29,15 +29,15 @@ public class Simulation {
 //    public void run(Susceptible S, Infected I, Recovered R, GroupParameters gp) {
     public void run(SIR sir, Population pop) {
         try {
-            File myFile = new File(Constants.outputPath);
-            if (myFile.exists()) {
-                myFile.delete();
-            }
-            myFile.createNewFile();
+//            File myFile = new File(Constants.outputPath);
+//            if (myFile.exists()) {
+//                myFile.delete();
+//            }
+//            myFile.createNewFile();
 
             PrintHelper.printHeader();
-            PrintHelper.printData(sir, myFile);
-            results.addData(sir.s.get(), sir.i.get(), sir.r.get(), t);
+//            PrintHelper.printData(sir, myFile);
+            results.addData((SIR)sir.clone(), t);
 
             Iterator theIterator = new SimpleEuler();
 
@@ -49,10 +49,12 @@ public class Simulation {
                 loopCount++;
 
                 if (loopCount % printRes == 0) {
-                    PrintHelper.printData(sir, myFile);
-                    results.addData(sir.s.get(), sir.i.get(), sir.r.get(), t);
+//                    PrintHelper.printData(sir, myFile);
+                    results.addData((SIR)sir.clone(), t);
                 }
             }
+
+            results.write(Constants.outputPath);
         } catch (Exception e) {
             e.printStackTrace();
         }

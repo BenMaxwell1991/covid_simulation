@@ -28,9 +28,9 @@ public class MyGraphDrawer {
 
     public MyGraphDrawer(Results chartData) {
 
-        S = chartData.getS().toArray(new Double[0]);
-        I = chartData.getI().toArray(new Double[0]);
-        R = chartData.getR().toArray(new Double[0]);
+        S = chartData.getS();
+        I = chartData.getI();
+        R = chartData.getR();
 
         initUI();
     }

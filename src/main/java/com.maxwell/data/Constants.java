@@ -4,6 +4,6 @@ public class Constants {
 
     private Constants(){}
 
-    public static String inputPath = "InputParameters.txt";
-    public static String outputPath = "OutputData.txt";
+    public static String inputPath = "InputParameters.json";
+    public static String outputPath = "OutputData.json";
 }
