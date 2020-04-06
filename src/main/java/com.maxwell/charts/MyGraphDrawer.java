@@ -12,7 +12,6 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
 
 import javax.swing.*;
@@ -60,7 +59,7 @@ public class MyGraphDrawer {
     public XYSeries createDataSet(Double[] xyData, String key) {
 
         XYSeries series = new XYSeries(key);
-        for (int i = 0; i < xyData.length/2; i = i + 2) {
+        for (int i = 0; i < xyData.length; i = i + 2) {
             series.add(xyData[i], xyData[i+1]);
         }
 
