@@ -40,18 +40,16 @@ public class MyGraphDrawer {
         dataset.addSeries(createDataSet(R, "Recovered"));
 
         JFreeChart chart = createChart(null);
-        JFrame frame = new JFrame();
 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel.setBackground(Color.white);
-        frame.add(chartPanel);
 
+        JFrame frame = new JFrame("Covid-19 Simulation");
+        frame.add(chartPanel);
         frame.pack();
-        frame.setTitle("Line chart");
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         frame.setVisible(true);
     }
 

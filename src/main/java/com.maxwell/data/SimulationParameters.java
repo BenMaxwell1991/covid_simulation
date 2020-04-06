@@ -15,17 +15,19 @@ public class SimulationParameters {
     public double dt; // Timestep
     public double maxt; // End of simulation
     public int outputRes; // Only print data every nth iteration
+    public String rungeKuttaClassName; // Name of the runge kutta class to be used as integrator
 
     public SimulationParameters() {
-        this(0.0, 0.001, 20.0, 100);
+        this(0.0, 0.001, 20.0, 100, Constants.EulerCN);
     }
 
     // Constructor
-    public SimulationParameters(double t, double dt, double maxt, int outputRes) {
+    public SimulationParameters(double t, double dt, double maxt, int outputRes, String RKClassName) {
         this.t = t;
         this.dt = dt;
         this.maxt = maxt;
         this.outputRes = outputRes;
+        this.rungeKuttaClassName = RKClassName;
     }
 
     // Sets the parameters of this class to those of another instance of this class
@@ -34,6 +36,7 @@ public class SimulationParameters {
         this.dt = sp.dt;
         this.maxt = sp.maxt;
         this.outputRes = sp.outputRes;
+        this.rungeKuttaClassName = sp.rungeKuttaClassName;
     }
 
     // Read in an instance of this class from a Json file, then set the parameters of this class to those read in.

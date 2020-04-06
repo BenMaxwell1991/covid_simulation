@@ -19,8 +19,8 @@ public class SimpleEuler implements RungeKutta {
         double transRate = g.transmissionRate.get(0);
 
         double dSdT = sir.s.rate(transRate, sir.i.get());
-        double dIdT = sir.i.rate(sir.s.rate(transRate, sir.i.get()), sir.r.rate(gp.recoveryRate, sir.i.get()));
         double dRdT = sir.r.rate(gp.recoveryRate, sir.i.get());
+        double dIdT = sir.i.rate(dSdT, dRdT);
 
         sir.s.set(sir.s.get() + (dSdT * dt));
         sir.i.set(sir.i.get() + (dIdT * dt));
