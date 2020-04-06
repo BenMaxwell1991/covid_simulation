@@ -4,6 +4,7 @@ public class Constants {
 
     private Constants(){}
 
-    public static String inputPath = "InputParameters.json";
+    public static String groupParams = "GroupParameters.json";
+    public static String simulationParams = "SimulationParameters.json";
     public static String outputPath = "OutputData.json";
 }

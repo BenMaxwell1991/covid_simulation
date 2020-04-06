@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+// This class contains the information on all of the groups that constitute a population
 public class Population {
 
     public ArrayList<Group> groups = new ArrayList<>();
@@ -25,7 +26,7 @@ public class Population {
         Gson gson = new Gson();
 
         try {
-            FileReader reader = new FileReader(Constants.inputPath);
+            FileReader reader = new FileReader(Constants.groupParams);
             ArrayList<Group> groupsInit = gson.fromJson(reader, new TypeToken<ArrayList<Group>>(){}.getType());
             groups = groupsInit;
 
@@ -37,7 +38,7 @@ public class Population {
     // Write group data/parameters to JSON file (For testing only)
     public void write(String filePath) {
 
-        FileWriter writer = null;
+        FileWriter writer;
         try {
             writer = new FileWriter(filePath);
 

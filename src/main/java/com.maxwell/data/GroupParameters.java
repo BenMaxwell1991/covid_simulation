@@ -1,16 +1,17 @@
 package com.maxwell.data;
 
+// Contains the parameters internal to a group: the recovery rate of an individual and the SIR distribution
 public class GroupParameters {
 
-    public double beta; // Recovery rate
-    public SIR sirInit;
+    public double recoveryRate; // Recovery rate
+    public SIR sirInit; // Initial SIR values within group
 
     public GroupParameters() {
         this(0.23, new SIR (0.99, 0.01, 0.00));
     }
 
-    public GroupParameters(double b, SIR sir){
-        this.beta = b;
-        this.sirInit = sir;
+    public GroupParameters(double recoveryRate, SIR sirInit){
+        this.recoveryRate = recoveryRate;
+        this.sirInit = sirInit;
     };
 }

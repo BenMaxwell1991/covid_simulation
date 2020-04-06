@@ -7,7 +7,7 @@ import com.maxwell.maths.Infected;
 import com.maxwell.maths.Recovered;
 import com.maxwell.maths.Susceptible;
 
-public interface Iterator {
+public interface RungeKutta {
 
     void stepForward(SIR sir, Population pop, double dt);
 }

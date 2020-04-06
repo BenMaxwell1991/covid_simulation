@@ -2,7 +2,7 @@
   {
     "name": "Whole Population",
     "parameters": {
-      "beta": 0.23,
+      "recoveryRate": 0.23,
       "sirInit": {
         "s": {
           "value": 0.99

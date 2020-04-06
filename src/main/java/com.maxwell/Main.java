@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         Population population = new Population();
-        population.read(Constants.inputPath);
+        population.read(Constants.groupParams);
 
         SIR sir = population.groups.get(0).parameters.sirInit;
         Simulation simulation = new Simulation();
