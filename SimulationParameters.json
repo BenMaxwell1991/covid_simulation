@@ -2,6 +2,6 @@
   "t": 0.0,
   "dt": 0.001,
   "maxt": 20.0,
-  "outputRes": 100,
-  "rungeKuttaClassName": "com.maxwell.simulation.ClassicRungeKutta"
+  "outputRes": 20,
+  "rungeKuttaClassName": "com.maxwell.simulation.SimpleEuler"
 }

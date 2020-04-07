@@ -4,6 +4,9 @@ import com.maxwell.data.*;
 
 import java.lang.reflect.Constructor;
 
+import static com.maxwell.utility.PrintHelper.printData;
+import static com.maxwell.utility.PrintHelper.printHeader;
+
 public class Simulation {
 
     public SimulationParameters simParams;
@@ -17,9 +20,10 @@ public class Simulation {
         this.simParams = new SimulationParameters(startTime, timeStep, endTime, outputRes, RKClassName);
     }
 
-// Runs the simulation from t to maxt
-    public void run(SIR sir, Population pop) {
+    // Runs the simulation from t to maxt
+    public void run(Population pop) {
 
+        SIR sir = pop.getNormalisedSIR();
         simParams.read();
         double t = simParams.t;
         double dt = simParams.dt;
@@ -32,11 +36,12 @@ public class Simulation {
 
             int loopCount = 0;
             for (double i = t; i < maxt; i = i + dt) {
-                RKMethod.stepForward(sir, pop, dt);
+                RKMethod.stepForward(pop, dt);
                 t = t + dt;
                 loopCount++;
 
                 if (loopCount % outputRes == 0) {
+                    sir = calculateTotalSIR(pop);
                     results.addData((SIR)sir.clone(), t);
                 }
             }
@@ -48,6 +53,14 @@ public class Simulation {
 
     public Results getResults() {
         return results;
+    }
+
+    private SIR calculateTotalSIR(Population pop) {
+        SIR sir = new SIR(0.00, 0.00, 0.00);
+        for (Group g : pop.groups) {
+            sir.add(g.parameters.sirValues);
+        }
+        return sir;
     }
 
     // Get the Runge Kutta implementation from class name

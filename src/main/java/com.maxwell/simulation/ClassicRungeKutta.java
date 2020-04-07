@@ -10,7 +10,8 @@ public class ClassicRungeKutta implements RungeKutta {
     public ClassicRungeKutta() {
     }
 
-    public void stepForward(SIR sir, Population pop, double dt) {
+    public void stepForward(Population pop, double dt) {
+        SIR sir = pop.groups.get(0).parameters.sirValues;
         double k1S, k1I, k1R;
         double k2S, k2I, k2R;
         double k3S, k3I, k3R;
@@ -18,7 +19,7 @@ public class ClassicRungeKutta implements RungeKutta {
         double I2, I3, I4;
         Group g = pop.groups.get(0);
         GroupParameters gp = g.parameters;
-        double transRate = g.transmissionRate.get(0);
+        double transRate = pop.transmissionRates.get(0).get(0);
         double recovRate = gp.recoveryRate;
 
         k1S = sir.s.rate(transRate, sir.i.get());

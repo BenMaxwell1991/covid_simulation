@@ -8,15 +8,13 @@ public class Group {
 
     public String name;
     public GroupParameters parameters;
-    public ArrayList<Double> transmissionRate; // Transmission rate between groups (includes internal transmission rate)
 
     public Group() {
-        this(new GroupParameters(), new ArrayList<>(), "EmptyGroupName");
+        this(new GroupParameters(), "EmptyGroupName");
     }
 
-    public Group(GroupParameters gp, ArrayList<Double> a, String aName) {
+    public Group(GroupParameters gp, String aName) {
         parameters = gp;
-        transmissionRate = a;
         name = aName;
     }
 }

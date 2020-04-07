@@ -57,7 +57,7 @@ public class MyGraphDrawer {
     public XYSeries createDataSet(Double[] xyData, String key) {
 
         XYSeries series = new XYSeries(key);
-        for (int i = 0; i < xyData.length; i = i + 2) {
+        for (int i = 0; i < xyData.length - 2; i = i + 2) {
             series.add(xyData[i], xyData[i+1]);
         }
 

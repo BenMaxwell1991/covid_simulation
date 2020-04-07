@@ -28,19 +28,11 @@ public class PrintHelper {
 
 
     // Print current set of x, y, z data
-    public static void printData(SIR sir, File aFile){
+    public static void printData(SIR sir){
         DecimalFormat formatter = new DecimalFormat("0.00");
         String sStr = formatter.format(sir.s.get());
         String iStr = formatter.format(sir.i.get());
         String rStr = formatter.format(sir.r.get());
-
         System.out.print(sStr + "  " + iStr + "  " + rStr + "\n");
-        try {
-            FileWriter myWriter = new FileWriter(aFile, true);
-            myWriter.write(sStr + "  " + iStr + "  " + rStr + "\n");
-            myWriter.close();
-        } catch (Exception e) {
-
-        }
     }
 }

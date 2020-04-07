@@ -1,0 +1,31 @@
+{
+  "groups": [
+    {
+      "name": "Group 1",
+      "parameters": {
+        "recoveryRate": 0.23,
+        "sirValues": {
+          "s": {
+            "value": 0.99
+          },
+          "i": {
+            "value": 0.01
+          },
+          "r": {
+            "value": 0.0
+          }
+        }
+      }
+    }
+  ],
+  "transmissionRates": [
+    [
+      3.2,
+      3.2
+    ],
+    [
+      3.2,
+      3.2
+    ]
+  ]
+}

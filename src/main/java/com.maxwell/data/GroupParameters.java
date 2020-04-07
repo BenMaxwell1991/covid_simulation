@@ -4,7 +4,7 @@ package com.maxwell.data;
 public class GroupParameters {
 
     public double recoveryRate; // Recovery rate
-    public SIR sirInit; // Initial SIR values within group
+    public SIR sirValues; // Initial SIR values within group
 
     public GroupParameters() {
         this(0.23, new SIR (0.99, 0.01, 0.00));
@@ -12,6 +12,6 @@ public class GroupParameters {
 
     public GroupParameters(double recoveryRate, SIR sirInit){
         this.recoveryRate = recoveryRate;
-        this.sirInit = sirInit;
+        this.sirValues = sirInit;
     };
 }
