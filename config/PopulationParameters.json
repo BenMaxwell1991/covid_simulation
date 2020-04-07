@@ -3,7 +3,7 @@
     {
       "name": "Group 0",
       "parameters": {
-        "recoveryRate": 0.23,
+        "recoveryRate": 0.17,
         "sirValues": {
           "s": {
             "value": 0.99
@@ -20,7 +20,7 @@
     {
       "name": "Group 1",
       "parameters": {
-        "recoveryRate": 0.23,
+        "recoveryRate": 0.11,
         "sirValues": {
           "s": {
             "value": 1.00

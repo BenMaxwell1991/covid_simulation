@@ -4,8 +4,9 @@ public class Constants {
 
     private Constants(){}
 
-    public static String populationParams = "PopulationParameters.json";
-    public static String simulationParams = "SimulationParameters.json";
+    public static String configDir = "config/";
+    public static String populationParams = configDir + "PopulationParameters.json";
+    public static String simulationParams = configDir + "SimulationParameters.json";
     public static String outputPath = "OutputData.json";
 
     public static String EulerCN = "com.maxwell.simulation.SimpleEuler";
