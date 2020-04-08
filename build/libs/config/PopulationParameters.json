@@ -3,7 +3,7 @@
     {
       "name": "Young People (Rapid Spreaders)",
       "parameters": {
-        "recoveryRate": 0.3,
+        "recoveryRate": 1.0,
         "sirValues": {
           "s": {
             "value": 0.98
@@ -20,7 +20,7 @@
     {
       "name": "Old People (Unshielded)",
       "parameters": {
-        "recoveryRate": 0.1,
+        "recoveryRate": 1.0,
         "sirValues": {
           "s": {
             "value": 1.00
@@ -37,12 +37,12 @@
   ],
   "transmissionRates": [
     [
-      6.0,
-      0.25
+      3.2,
+      1.2
     ],
     [
-      0.25,
-      1.0
+      1.5,
+      1.2
     ]
   ]
 }
