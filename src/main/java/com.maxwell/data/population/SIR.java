@@ -1,4 +1,4 @@
-package com.maxwell.data;
+package com.maxwell.data.population;
 
 import com.maxwell.maths.Infected;
 import com.maxwell.maths.Recovered;

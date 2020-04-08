@@ -1,4 +1,4 @@
-package com.maxwell.data;
+package com.maxwell.data.population;
 
 // Contains the parameters internal to a group: the recovery rate of an individual and the SIR distribution
 public class GroupParameters {

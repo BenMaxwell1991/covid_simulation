@@ -1,9 +1,7 @@
 package com.maxwell.utility;
 
-import com.maxwell.data.SIR;
+import com.maxwell.data.population.SIR;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.text.DecimalFormat;
 
 // This class helps print output to the console

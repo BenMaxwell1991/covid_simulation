@@ -1,37 +1,34 @@
 package com.maxwell.simulation;
 
 import com.maxwell.data.*;
+import com.maxwell.data.population.Group;
+import com.maxwell.data.population.Population;
+import com.maxwell.data.population.SIR;
+import com.maxwell.simulation.methods.RungeKutta;
+import com.maxwell.utility.JSon;
 
 import java.lang.reflect.Constructor;
-
-import static com.maxwell.utility.PrintHelper.printData;
-import static com.maxwell.utility.PrintHelper.printHeader;
 
 public class Simulation {
 
     public SimulationParameters simParams;
-    public Results results = new Results();
+    public Results results;
 
-    public Simulation(){
-        this(0.0, 0.001, 20.0, 100, Constants.EulerCN);
-    }
-
-    public Simulation(double startTime, double timeStep, double endTime, int outputRes, String RKClassName) {
-        this.simParams = new SimulationParameters(startTime, timeStep, endTime, outputRes, RKClassName);
+    public Simulation(int n){
+        simParams =  new SimulationParameters();
+        results = new Results(n);
     }
 
     // Runs the simulation from t to maxt
     public void run(Population pop) {
-
-        SIR sir = pop.getNormalisedSIR();
-        simParams.read();
+        simParams = (SimulationParameters)JSon.readFromJson(simParams, Constants.simulationParams);
         double t = simParams.t;
         double dt = simParams.dt;
         double maxt = simParams.maxt;
         int outputRes = simParams.outputRes;
 
         try {
-            results.addData((SIR)sir.clone(), t);
+            results.addData(pop, t);
             RungeKutta RKMethod = getMethod(simParams.rungeKuttaClassName);
 
             int loopCount = 0;
@@ -39,13 +36,11 @@ public class Simulation {
                 RKMethod.stepForward(pop, dt);
                 t = t + dt;
                 loopCount++;
-
                 if (loopCount % outputRes == 0) {
-                    sir = calculateTotalSIR(pop);
-                    results.addData((SIR)sir.clone(), t);
+                    results.addData(pop, t);
                 }
             }
-            results.write(Constants.outputPath);
+            JSon.writeToJson(results.getTotalData(), Constants.outputPath);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,14 +48,6 @@ public class Simulation {
 
     public Results getResults() {
         return results;
-    }
-
-    private SIR calculateTotalSIR(Population pop) {
-        SIR sir = new SIR(0.00, 0.00, 0.00);
-        for (Group g : pop.groups) {
-            sir.add(g.parameters.sirValues);
-        }
-        return sir;
     }
 
     // Get the Runge Kutta implementation from class name

@@ -1,5 +1,10 @@
 package com.maxwell.data;
 
+import com.maxwell.data.population.Group;
+import com.maxwell.data.population.GroupParameters;
+import com.maxwell.data.population.Population;
+import com.maxwell.data.population.SIR;
+
 import java.util.ArrayList;
 
 public class TestData {

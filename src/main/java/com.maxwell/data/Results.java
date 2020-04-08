@@ -1,69 +1,44 @@
 package com.maxwell.data;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.maxwell.data.population.GroupData;
+import com.maxwell.data.population.Population;
+import com.maxwell.data.population.SIR;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Results {
 
-    private ArrayList<SIR> sirArray = new ArrayList<>();
-    private ArrayList<Double> time = new ArrayList<>();
+    private GroupData totalData = new GroupData();
+    public ArrayList<GroupData> groupData = new ArrayList<>();
+
+    public Results(int n) {
+        for (int i = 0; i < n; i++) {
+            groupData.add(new GroupData());
+        }
+    }
+
+    public GroupData getTotalData() { return totalData; }
+
+    public ArrayList<GroupData> getGroupData() { return groupData; }
 
     // Add a set of data to the results
-    public void addData(SIR sir, double t) {
-        sirArray.add(sir);
-        time.add(t);
-    }
-
-    // Returns Susceptibility vs Time
-    public Double[] getS () {
-        ArrayList<Double> s = new ArrayList<>();
-        for (int i = 0; i < sirArray.size(); i++) {
-            s.add(time.get(i));
-            s.add(sirArray.get(i).s.get());
-        }
-        return s.toArray(new Double[0]);
-    }
-
-    // Returns Infection vs Time
-    public Double[] getI () {
-        ArrayList<Double> i = new ArrayList<>();
-        for (int j = 0; j < sirArray.size(); j++) {
-            i.add(time.get(j));
-            i.add(sirArray.get(j).i.get());
-        }
-        return i.toArray(new Double[0]);
-    }
-
-    // Returns Recovered vs Time
-    public Double[] getR () {
-        ArrayList<Double> r = new ArrayList<>();
-        for (int i = 0; i < sirArray.size(); i++) {
-            r.add(time.get(i));
-            r.add(sirArray.get(i).r.get());
-        }
-        return r.toArray(new Double[0]);
-    }
-
-    // Writes data to filePath in JSON format
-    public void write(String filePath) {
-
-        FileWriter writer = null;
+    public void addData(Population p, double t) {
         try {
-            writer = new FileWriter(filePath);
-
-            Gson gson = new GsonBuilder()
-                    .setPrettyPrinting()
-                    .create();
-
-            gson.toJson(this, writer);
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            double totalS = 0.0;
+            double totalI = 0.0;
+            double totalR = 0.0;
+            for (int i = 0; i < p.groups.size(); i++) {
+                SIR clonedSIR = ((SIR)p.groups.get(i).parameters.sirValues.clone());
+                totalS += clonedSIR.s.get();
+                totalI += clonedSIR.i.get();
+                totalR += clonedSIR.r.get();
+                groupData.get(i).sirArray.add(clonedSIR);
+                groupData.get(i).time.add(t);
+            }
+            totalData.sirArray.add(new SIR(totalS, totalI, totalR));
+            totalData.time.add(t);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

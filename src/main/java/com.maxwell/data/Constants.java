@@ -9,6 +9,6 @@ public class Constants {
     public static String simulationParams = configDir + "SimulationParameters.json";
     public static String outputPath = "OutputData.json";
 
-    public static String EulerCN = "com.maxwell.simulation.SimpleEuler";
-    public static String RK4CN = "com.maxwell.simulation.ClassicRungeKutta";
+    public static String EulerCN = "com.maxwell.simulation.methods.SimpleEuler";
+    public static String RK4CN = "com.maxwell.simulation.methods.ClassicRungeKutta";
 }

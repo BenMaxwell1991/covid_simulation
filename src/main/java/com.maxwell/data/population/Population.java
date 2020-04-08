@@ -1,16 +1,15 @@
-package com.maxwell.data;
+package com.maxwell.data.population;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.maxwell.data.Constants;
+import com.maxwell.utility.JSon;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 // This class contains the information on all of the groups that constitute a population
-public class Population {
+public class Population implements Cloneable {
 
     public ArrayList<Group> groups = new ArrayList<>();
     public ArrayList<ArrayList<Double>> transmissionRates = new ArrayList<>(); // Transmission rate between groups (includes internal transmission rate)
@@ -42,12 +41,12 @@ public class Population {
         }
     }
 
-    public SIR getNormalisedSIR() {
+    public SIR getSIR() {
         SIR sir = new SIR(0.0, 0.0, 0.0);
         for (Group g : groups) {
             sir.add(g.parameters.sirValues);
         }
-        return sir.normalise();
+        return sir;
     }
 
     // Read in all group data from a JSON file
@@ -67,20 +66,11 @@ public class Population {
 
     // Write group data/parameters to JSON file (For testing only)
     public void write(String filePath) {
-
-        FileWriter writer;
-        try {
-            writer = new FileWriter(filePath);
-
-            Gson gson = new GsonBuilder()
-                    .setPrettyPrinting()
-                    .create();
-
-            gson.toJson(this, writer);
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JSon.writeToJson(this, filePath);
     }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
 }
