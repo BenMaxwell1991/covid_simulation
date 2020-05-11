@@ -1,25 +1,25 @@
 package com.maxwell.data;
 
+import com.maxwell.Config;
+import com.maxwell.data.population.Group;
 import com.maxwell.data.population.GroupData;
 import com.maxwell.data.population.Population;
 import com.maxwell.data.population.SIR;
 import com.maxwell.simulation.SimulationParameters;
-import com.maxwell.utility.JSon;
 
 import java.util.ArrayList;
 
 public class Results {
 
-    public SimulationParameters simulationParameters = new SimulationParameters();
-    public Population populationParameters = new Population();
+    public Config config;
     public ArrayList<GroupData> groupDataResults = new ArrayList<>();
 
-    public Results(int n) {
-        simulationParameters = (SimulationParameters) JSon.readFromJson(simulationParameters, Constants.simulationParams);
-        populationParameters = (Population) JSon.readFromJson(populationParameters, Constants.populationParams);
-        for (int i = 0; i < n; i++) {
+    public Results(Config config) {
+        this.config = config;
+        ArrayList<Group> g = config.populationParameters.groups;
+        for (int i = 0; i < g.size() + 1; i++) {
             groupDataResults.add(new GroupData());
-            groupDataResults.get(i).groupName = i == 0 ? "Whole Population" : populationParameters.groups.get(i - 1).name;
+            groupDataResults.get(i).groupName = i == 0 ? "Whole Population" : g.get(i - 1).name;
         }
     }
 

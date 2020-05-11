@@ -49,26 +49,6 @@ public class Population implements Cloneable {
         return sir;
     }
 
-    // Read in all group data from a JSON file
-    public void read(String filePath) {
-        Gson gson = new Gson();
-
-        try {
-            FileReader reader = new FileReader(Constants.populationParams);
-            Population population = gson.fromJson(reader, Population.class);
-            this.groups = population.groups;
-            this.transmissionRates = population.transmissionRates;
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Write group data/parameters to JSON file (For testing only)
-    public void write(String filePath) {
-        JSon.writeToJson(this, filePath);
-    }
-
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }

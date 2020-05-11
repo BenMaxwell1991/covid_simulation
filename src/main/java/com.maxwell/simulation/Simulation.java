@@ -1,5 +1,6 @@
 package com.maxwell.simulation;
 
+import com.maxwell.Config;
 import com.maxwell.data.*;
 import com.maxwell.data.population.Population;
 import com.maxwell.simulation.methods.RungeKutta;
@@ -12,14 +13,13 @@ public class Simulation {
     public SimulationParameters simParams;
     public Results results;
 
-    public Simulation(int n){
-        simParams =  new SimulationParameters();
-        results = new Results(n);
+    public Simulation(Config config){
+        simParams = config.simulationParameters;
+        results = new Results(config);
     }
 
     // Runs the simulation from t to maxt
     public void run(Population pop) {
-        simParams = (SimulationParameters)JSon.readFromJson(simParams, Constants.simulationParams);
         double t = simParams.t;
         double dt = simParams.dt;
         double maxt = simParams.maxt;
