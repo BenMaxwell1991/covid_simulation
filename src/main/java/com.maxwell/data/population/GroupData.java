@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class GroupData {
 
-    public ArrayList<SIR> sirArray = new ArrayList<>();
-    public ArrayList<Double> time = new ArrayList<>();
-    public String name;
+    public String groupName;
+    public ArrayList<Double> S = new ArrayList<>();
+    public ArrayList<Double> I = new ArrayList<>();
+    public ArrayList<Double> R = new ArrayList<>();
+    public ArrayList<Double> T = new ArrayList<>();
 
     // Returns Susceptibility vs Time
     public Double[] getS () {
         ArrayList<Double> s = new ArrayList<>();
-        for (int i = 0; i < sirArray.size(); i++) {
-            s.add(time.get(i));
-            s.add(sirArray.get(i).s.get());
+        for (int i = 0; i < T.size(); i++) {
+            s.add(T.get(i));
+            s.add(S.get(i));
         }
         return s.toArray(new Double[0]);
     }
@@ -21,9 +23,9 @@ public class GroupData {
     // Returns Infection vs Time
     public Double[] getI () {
         ArrayList<Double> i = new ArrayList<>();
-        for (int j = 0; j < sirArray.size(); j++) {
-            i.add(time.get(j));
-            i.add(sirArray.get(j).i.get());
+        for (int j = 0; j < T.size(); j++) {
+            i.add(T.get(j));
+            i.add(I.get(j));
         }
         return i.toArray(new Double[0]);
     }
@@ -31,9 +33,9 @@ public class GroupData {
     // Returns Recovered vs Time
     public Double[] getR () {
         ArrayList<Double> r = new ArrayList<>();
-        for (int i = 0; i < sirArray.size(); i++) {
-            r.add(time.get(i));
-            r.add(sirArray.get(i).r.get());
+        for (int i = 0; i < T.size(); i++) {
+            r.add(T.get(i));
+            r.add(R.get(i));
         }
         return r.toArray(new Double[0]);
     }

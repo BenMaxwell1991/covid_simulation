@@ -1,9 +1,7 @@
 package com.maxwell.simulation;
 
 import com.maxwell.data.*;
-import com.maxwell.data.population.Group;
 import com.maxwell.data.population.Population;
-import com.maxwell.data.population.SIR;
 import com.maxwell.simulation.methods.RungeKutta;
 import com.maxwell.utility.JSon;
 
@@ -28,7 +26,7 @@ public class Simulation {
         int outputRes = simParams.outputRes;
 
         try {
-            results.addData(pop, t);
+            results.addDatanew(pop, t);
             RungeKutta RKMethod = getMethod(simParams.rungeKuttaClassName);
 
             int loopCount = 0;
@@ -37,10 +35,10 @@ public class Simulation {
                 t = t + dt;
                 loopCount++;
                 if (loopCount % outputRes == 0) {
-                    results.addData(pop, t);
+                    results.addDatanew(pop, t);
                 }
             }
-            JSon.writeToJson(results.getTotalData(), Constants.outputPath);
+            JSon.writeToJson(results, Constants.outputPath);
         } catch (Exception e) {
             e.printStackTrace();
         }

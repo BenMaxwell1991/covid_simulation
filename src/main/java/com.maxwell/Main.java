@@ -13,7 +13,7 @@ public class Main {
         p = (Population)JSon.readFromJson(p, Constants.populationParams);
         p.normalise();
 
-        Simulation simulation = new Simulation(p.groups.size());
+        Simulation simulation = new Simulation(p.groups.size() + 1);
         simulation.run(p);
 
         MyGraphDrawer mgd = new MyGraphDrawer(p, simulation.getResults());

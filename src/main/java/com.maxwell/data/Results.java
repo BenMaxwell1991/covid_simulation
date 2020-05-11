@@ -3,26 +3,28 @@ package com.maxwell.data;
 import com.maxwell.data.population.GroupData;
 import com.maxwell.data.population.Population;
 import com.maxwell.data.population.SIR;
+import com.maxwell.simulation.SimulationParameters;
+import com.maxwell.utility.JSon;
 
 import java.util.ArrayList;
 
 public class Results {
 
-    private GroupData totalData = new GroupData();
-    public ArrayList<GroupData> groupData = new ArrayList<>();
+    public SimulationParameters simulationParameters = new SimulationParameters();
+    public Population populationParameters = new Population();
+    public ArrayList<GroupData> groupDataResults = new ArrayList<>();
 
     public Results(int n) {
+        simulationParameters = (SimulationParameters) JSon.readFromJson(simulationParameters, Constants.simulationParams);
+        populationParameters = (Population) JSon.readFromJson(populationParameters, Constants.populationParams);
         for (int i = 0; i < n; i++) {
-            groupData.add(new GroupData());
+            groupDataResults.add(new GroupData());
+            groupDataResults.get(i).groupName = i == 0 ? "Whole Population" : populationParameters.groups.get(i - 1).name;
         }
     }
 
-    public GroupData getTotalData() { return totalData; }
-
-    public ArrayList<GroupData> getGroupData() { return groupData; }
-
     // Add a set of data to the results
-    public void addData(Population p, double t) {
+    public void addDatanew(Population p, double t) {
         try {
             double totalS = 0.0;
             double totalI = 0.0;
@@ -32,11 +34,15 @@ public class Results {
                 totalS += clonedSIR.s.get();
                 totalI += clonedSIR.i.get();
                 totalR += clonedSIR.r.get();
-                groupData.get(i).sirArray.add(clonedSIR);
-                groupData.get(i).time.add(t);
+                groupDataResults.get(i + 1).S.add(clonedSIR.s.get());
+                groupDataResults.get(i + 1).I.add(clonedSIR.i.get());
+                groupDataResults.get(i + 1).R.add(clonedSIR.r.get());
+                groupDataResults.get(i + 1).T.add(t);
             }
-            totalData.sirArray.add(new SIR(totalS, totalI, totalR));
-            totalData.time.add(t);
+            groupDataResults.get(0).S.add(totalS);
+            groupDataResults.get(0).I.add(totalI);
+            groupDataResults.get(0).R.add(totalR);
+            groupDataResults.get(0).T.add(t);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

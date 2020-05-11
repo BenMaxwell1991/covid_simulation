@@ -29,13 +29,8 @@ public class MyGraphDrawer {
     // Get result data vs time and initialise the UI
     public MyGraphDrawer(Population pop, Results results) {
 
-        // Add data for chart of total population
-        S.add(results.getTotalData().getS());
-        I.add(results.getTotalData().getI());
-        R.add(results.getTotalData().getR());
-
         // Add data for charts of every sub population
-        for (GroupData g : results.groupData) {
+        for (GroupData g : results.groupDataResults) {
             S.add(g.getS());
             I.add(g.getI());
             R.add(g.getR());
@@ -49,7 +44,7 @@ public class MyGraphDrawer {
 
     private ArrayList<JFreeChart> getCharts(Results results, ArrayList<Group> grps) {
         ArrayList<JFreeChart> charts = new ArrayList<>();
-        for (int i = 0; i < results.groupData.size() + 1; i++) {
+        for (int i = 0; i < results.groupDataResults.size(); i++) {
             String name = i == 0 ? "Whole Population" : grps.get(i - 1).name;
             dataset.add(new XYSeriesCollection());
             dataset.get(i).addSeries(createDataSet(S.get(i), "Susceptible"));
