@@ -4,16 +4,15 @@ import com.maxwell.charts.MyGraphDrawer;
 import com.maxwell.simulation.Simulation;
 import com.maxwell.utility.JSon;
 
-import java.util.stream.Stream;
+import java.io.OutputStream;
 
 public class EntryPoint {
 
-    public static Stream<String> getResultStream(String jsonConfig) {
+    public static void getResultStream(String jsonConfig, OutputStream outputStream) {
         Config config = Config.loadConfigFromJSON(jsonConfig);
         Simulation simulation = new Simulation(config);
         simulation.run(config.populationParameters);
-
-        return Stream.of(JSon.writeToJsonString(simulation.results));
+        JSon.writeToJsonStream(simulation.results, outputStream);
     }
 
     public static String getResultString(String jsonConfig) {
