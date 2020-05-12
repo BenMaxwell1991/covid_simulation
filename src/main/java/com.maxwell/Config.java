@@ -16,12 +16,18 @@ public class Config {
     }
 
     static Config loadConfigFromFile() {
-        Config config = (Config) JSon.readFromJson(new Config(), Constants.config);
+        Config config = (Config) JSon.readFromJson(Config.class, Constants.config);
         return config;
     }
 
     static Config loadConfigFromJSON(String jsonConfig) {
-        Config config = (Config) JSon.readFromJsonString(new Config(), jsonConfig);
+        Config config = null;
+        Object object = JSon.readFromJsonString(Config.class, jsonConfig);
+        if (object instanceof Config) { 
+            config = (Config) object;
+        } else {
+            
+        }
         return config;
     }
 }

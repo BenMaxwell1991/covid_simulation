@@ -38,9 +38,9 @@ public class JSon {
         gson.toJson(obj, printWriter);
     }
 
-    public static Object readFromJsonString(Object obj, String JSonString) {
+    // Read an object of type objClass from JSonString and return this object
+    public static Object readFromJsonString(Class objClass, String JSonString) {
         Gson gson = new Gson();
-        Class<?> objClass = obj.getClass();
         Object readObj = new Object();
 
         try {
@@ -78,9 +78,8 @@ public class JSon {
         return jsonAsString;
     }
 
-    public static Object readFromJson(Object obj, String filePath) {
+    public static Object readFromJson(Class objClass, String filePath) {
         Gson gson = new Gson();
-        Class<?> objClass = obj.getClass();
         Object readObj = new Object();
 
         try {
