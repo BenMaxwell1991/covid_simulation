@@ -4,7 +4,6 @@ import com.maxwell.data.population.Group;
 import com.maxwell.data.population.GroupParameters;
 import com.maxwell.data.population.Population;
 import com.maxwell.data.population.SIR;
-import com.maxwell.simulation.methods.RungeKutta;
 
 public class ClassicRungeKutta implements RungeKutta {
 

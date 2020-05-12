@@ -3,7 +3,6 @@ package com.maxwell.simulation.methods;
 import com.maxwell.data.population.GroupParameters;
 import com.maxwell.data.population.Population;
 import com.maxwell.data.population.SIR;
-import com.maxwell.simulation.methods.RungeKutta;
 
 // Implements the runge kutta model under the assumption the rate of change is constant.
 // This is the simplest solution to the problem but not always as accurate for exponential curves.

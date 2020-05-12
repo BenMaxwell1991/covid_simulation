@@ -21,7 +21,7 @@ public class Config {
     }
 
     static Config loadConfigFromJSON(String jsonConfig) {
-        Config config = (Config) JSon.readFromJson(new Config(), jsonConfig);
+        Config config = (Config) JSon.readFromJsonString(new Config(), jsonConfig);
         return config;
     }
 }
