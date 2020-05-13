@@ -89,7 +89,7 @@ public class MyGraphDrawer {
             series.add(xyData[i], xyData[i+1]);
         }
 
-        var dataset = new XYSeriesCollection();
+        XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series);
 
         return series;
